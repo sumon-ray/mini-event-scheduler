@@ -1,26 +1,20 @@
-// কোনো প্যারেন্ট কম্পোনেন্ট বা পেইজ ফাইল (যেমন: app/page.tsx বা components/EventList.tsx)
-
 import EventForm from "@/components/EventForm";
 import EventList from "@/components/EventList";
+import { useState } from "react";
 
 const MyEventsPage = () => {
-  // এই ফাংশনটি EventForm দ্বারা কল করা হবে যখন একটি ইভেন্ট সফলভাবে যোগ হবে।
-  const handleEventSuccess = () => {
-    console.log('ইভেন্ট সফলভাবে যোগ হয়েছে! এখন তালিকা রিফ্রেশ করা হচ্ছে বা মেসেজ দেখানো হচ্ছে।');
-    // এখানে, সাধারণত আপনি আপনার ইভেন্টের তালিকা পুনরায় লোড করবেন,
-    // একটি মোডাল বন্ধ করবেন, অথবা ব্যবহারকারীকে একটি সফলতার নোটিফিকেশন দেখাবেন।
-  };
+  const [refreshTrigger, setRefreshTrigger] = useState(false);
 
+  const handleEventSuccess = () => {
+    // যখন নতুন ইভেন্ট add হবে তখন এই state টগল করুন
+    setRefreshTrigger(prev => !prev);
+  };
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">নতুন ইভেন্ট যোগ করুন</h1>
-      {/* সঠিক: handleEventSuccess ফাংশনটি onSuccess প্রপে পাস করুন */}
+      <h1 className="text-2xl font-bold mb-4">Add new Events</h1>
       <EventForm onSuccess={handleEventSuccess} />
-      {/* আপনি এখানে আপনার ইভেন্টের তালিকাও দেখাতে পারেন */}
-
-      <EventList />
+      <EventList refreshTrigger={refreshTrigger} />
     </div>
-
   );
 };
 

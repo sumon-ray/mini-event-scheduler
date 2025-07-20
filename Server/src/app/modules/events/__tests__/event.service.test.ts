@@ -14,7 +14,7 @@ describe('EventService', () => {
       date: '2025-08-10',
       time: '10:00',
       notes: 'Test notes',
-      category: 'Work',
+      // category: 'Work',
     });
 
     expect(newEvent).toHaveProperty('id');
@@ -29,14 +29,14 @@ describe('EventService', () => {
       date: '2025-08-11',
       time: '11:00',
       notes: '',
-      category: 'Work',
+      // category: 'Work',
     });
     await EventService.createEvent({
       title: 'Event 2',
       date: '2025-08-10',
       time: '09:00',
       notes: '',
-      category: 'Personal',
+      // category: 'Personal',
     });
 
     const allEvents = await EventService.getAllEvents();
@@ -54,7 +54,7 @@ describe('EventService', () => {
       date: '2025-08-12',
       time: '12:00',
       notes: '',
-      category: 'Other',
+      // category: 'Other',
     });
 
     const archivedEvent = await EventService.archiveEvent(event.id);
@@ -67,7 +67,7 @@ describe('EventService', () => {
       date: '2025-08-13',
       time: '13:00',
       notes: '',
-      category: 'Other',
+      // category: 'Other',
     });
 
     await EventService.deleteEvent(event.id);
@@ -81,7 +81,7 @@ describe('EventService', () => {
       date: '2025-08-14',
       time: '14:00',
       notes: 'Original Notes',
-      category: 'Work',
+      // category: 'Work',
     });
 
     const updatedEvent = await EventService.updateEvent(event.id, {

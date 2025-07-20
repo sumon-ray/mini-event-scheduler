@@ -8,7 +8,5 @@ export interface Event {
     category: Category;
     archived: boolean;
     notes?: string;
-    description?: string;
-    location?: string;
   }
     

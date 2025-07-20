@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import status from 'http-status';
 import AppError from '../../errors/AppError';
 import { events } from '../../data/events.data';
+import { categorizeEvent } from './categorize';
 
 // Get all events
 const getAllEvents = async (): Promise<Event[]> => {
@@ -23,11 +24,13 @@ const getEventById = async (id: string): Promise<Event> => {
 
 // Create event
 const createEvent = async (
-  payload: Omit<Event, 'id' | 'archived'>
+  payload: Omit<Event, 'id' | 'archived' | 'category'>
 ): Promise<Event> => {
+  const category = categorizeEvent(payload.title, payload.notes)
   const newEvent: Event = {
     id: uuidv4(),
     archived: false,
+    category,
     ...payload,
   };
   events.push(newEvent);

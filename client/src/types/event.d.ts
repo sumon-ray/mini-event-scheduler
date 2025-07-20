@@ -7,6 +7,4 @@ export interface IEvent {
     category: 'Work' | 'Personal' | 'Other';
     archived: boolean;
     notes?: string;
-    description?: string;
-    location?: string;
   }

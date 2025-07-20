@@ -56,6 +56,7 @@ const EventForm = ({ onSuccess }: EventFormProps) => {
     try {
       await api.post("/events", values);
       form.reset();
+     
       onSuccess();
       toast.success("Event has been created.");
     } catch (error: unknown) {
