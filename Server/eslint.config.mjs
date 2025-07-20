@@ -12,6 +12,10 @@ export default defineConfig([
       // "no-console": "warn",
       'no-unused-vars': 'off',
       'no-empty-function': 'warn',
+      '@typescript-eslint/no-unused-vars': ['error', { 
+        argsIgnorePattern: '^_',   // underscore দিয়ে শুরু হলে ignore করবে unused vars হিসেবে
+        varsIgnorePattern: '^_',
+      }],
     },
   },
   {

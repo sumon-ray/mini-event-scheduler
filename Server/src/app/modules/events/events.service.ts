@@ -44,6 +44,21 @@ const archiveEvent = async (id: string): Promise<Event> => {
   return event;
 };
 
+// Update Event
+const updateEvent = async (
+  id: string,
+  payload: Partial<Omit<Event, 'id' | 'archived'>>
+): Promise<Event> => {
+  const event = events.find((e) => e.id === id);
+  if (!event) {
+    throw new AppError(status.NOT_FOUND, 'Event not found');
+  }
+
+  Object.assign(event, payload);
+  return event;
+};
+
+
 // Delete event
 const deleteEvent = async (id: string): Promise<void> => {
   const index = events.findIndex((e) => e.id === id);
@@ -58,5 +73,6 @@ export const EventService = {
   getEventById,
   createEvent,
   archiveEvent,
+  updateEvent,
   deleteEvent,
 };

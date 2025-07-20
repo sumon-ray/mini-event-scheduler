@@ -1,9 +1,10 @@
 import { events } from '../../../data/events.data';
 import { EventService } from '../events.service';
+import AppError from '../../../errors/AppError'; 
 
-// Test এর আগে events array ক্লিয়ার করতে হবে যাতে fresh state থাকে
+// clear array before testt
 beforeEach(() => {
-  events.length = 0; // clear the in-memory array before each test
+  events.length = 0;
 });
 
 describe('EventService', () => {
@@ -71,5 +72,31 @@ describe('EventService', () => {
 
     await EventService.deleteEvent(event.id);
     expect(events.find(e => e.id === event.id)).toBeUndefined();
+  });
+
+//  New: Update Event Tests
+  test('should update an existing event', async () => {
+    const event = await EventService.createEvent({
+      title: 'Original Title',
+      date: '2025-08-14',
+      time: '14:00',
+      notes: 'Original Notes',
+      category: 'Work',
+    });
+
+    const updatedEvent = await EventService.updateEvent(event.id, {
+      title: 'Updated Title',
+      notes: 'Updated Notes',
+    });
+
+    expect(updatedEvent.title).toBe('Updated Title');
+    expect(updatedEvent.notes).toBe('Updated Notes');
+    expect(updatedEvent.id).toBe(event.id);
+  });
+
+  test('should throw error when updating a non-existing event', async () => {
+    await expect(
+      EventService.updateEvent('invalid-id', { title: 'Fail Update' })
+    ).rejects.toThrow(AppError); // or toThrow('Event not found')
   });
 });

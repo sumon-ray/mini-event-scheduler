@@ -14,7 +14,7 @@ router.get('/:id', EventController.getEventById);
 
 // Archive an event
 router.patch('/:id/archive', EventController.archiveEvent);
-
+router.patch('/:id', EventController.updateEvent); 
 // Delete an event
 router.delete('/:id', EventController.deleteEvent);
 
