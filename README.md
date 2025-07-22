@@ -40,15 +40,25 @@ mini-event-scheduler/
 │   │   ├── app/              # Next.js app directory (if using)
 │   │   ├── components/       # React components
 │   │   │   ├── layout/       # Layout components
-│   │   │   │   ├── Navbar.tsx
-│   │   │   │   └── Footer.tsx
+│   │   │   │   ├── Banner.tsx
+│   │   │   │   ├── demo-modal.tsx
+│   │   │   │   ├── Footer.tsx
+│   │   │   │   └── Navbar.tsx
 │   │   │   ├── ui/           # UI components
+│   │   │   │   ├── alert-dialog.tsx
+│   │   │   │   ├── badge.tsx
+│   │   │   │   ├── badgeVariants.ts
 │   │   │   │   ├── button.tsx
+│   │   │   │   ├── button-variants.tsx
 │   │   │   │   ├── card.tsx
 │   │   │   │   ├── dialog.tsx
+│   │   │   │   ├── dropdown-menu.tsx
 │   │   │   │   ├── form.tsx
+│   │   │   │   ├── form-context.ts
 │   │   │   │   ├── input.tsx
 │   │   │   │   ├── label.tsx
+│   │   │   │   ├── sonner.tsx
+│   │   │   │   ├── switch.tsx
 │   │   │   │   ├── table.tsx
 │   │   │   │   └── textarea.tsx
 │   │   │   ├── EventCard.tsx
