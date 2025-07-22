@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea"; // Assuming you have a Textarea component in shadcn/ui
+import { Textarea } from "@/components/ui/textarea"; 
 import { toast } from "sonner";
 
 interface EventFormProps {
@@ -39,7 +39,6 @@ const eventFormSchema = z.object({
 type EventFormValues = z.infer<typeof eventFormSchema>;
 
 const EventForm = ({ onSuccess }: EventFormProps) => {
-  // 2. Initialize the form with useForm
   const form = useForm<EventFormValues>({
     resolver: zodResolver(eventFormSchema),
     defaultValues: {
@@ -50,13 +49,12 @@ const EventForm = ({ onSuccess }: EventFormProps) => {
     },
   });
 
-  // 3. Define the onSubmit handler
-
+  // onSubmit handler
   const onSubmit = async (values: EventFormValues) => {
     try {
       await api.post("/events", values);
       form.reset();
-     
+      
       onSuccess();
       toast.success("Event has been created.");
     } catch (error: unknown) {
@@ -68,6 +66,7 @@ const EventForm = ({ onSuccess }: EventFormProps) => {
             "Server is currently unavailable. Please try again later."
           );
         } else {
+          // You might want to display specific error messages from error.response.data if available
           toast.error("Something went wrong. Please try again.");
         }
       } else {
@@ -80,8 +79,10 @@ const EventForm = ({ onSuccess }: EventFormProps) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-4 bg-white p-4 rounded shadow"
+        className="space-y-4 mx-auto p-6 bg-white rounded-lg shadow-lg max-w-lg w-full md:max-w-xl lg:max-w-2xl"
       >
+        <h2 className="text-2xl font-bold text-center mb-4">Create New Event</h2>
+        
         {/* Title Field */}
         <FormField
           control={form.control}
@@ -97,35 +98,38 @@ const EventForm = ({ onSuccess }: EventFormProps) => {
           )}
         />
 
-        {/* Date Field */}
-        <FormField
-          control={form.control}
-          name="date"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Date</FormLabel>
-              <FormControl>
-                <Input type="date" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        {/* Date and Time Fields in a responsive grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Date Field */}
+          <FormField
+            control={form.control}
+            name="date"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Date</FormLabel>
+                <FormControl>
+                  <Input type="date" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        {/* Time Field */}
-        <FormField
-          control={form.control}
-          name="time"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Time</FormLabel>
-              <FormControl>
-                <Input type="time" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          {/* Time Field */}
+          <FormField
+            control={form.control}
+            name="time"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Time</FormLabel>
+                <FormControl>
+                  <Input type="time" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
         {/* Notes Field */}
         <FormField
