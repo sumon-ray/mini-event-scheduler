@@ -35,16 +35,16 @@ A full-stack event scheduling application built with React, Node.js, TypeScript,
 
 ```
 mini-event-scheduler/
-├── client/                    # Frontend React application
+├── client/                             # Frontend React application
 │   ├── src/
-│   │   ├── app/              # Next.js app directory (if using)
-│   │   ├── components/       # React components
-│   │   │   ├── layout/       # Layout components
+│   │   ├── app/                         # Next.js app directory (if using)
+│   │   ├── components/                  # React components
+│   │   │   ├── layout/                  # Layout components
 │   │   │   │   ├── Banner.tsx
 │   │   │   │   ├── demo-modal.tsx
 │   │   │   │   ├── Footer.tsx
 │   │   │   │   └── Navbar.tsx
-│   │   │   ├── ui/           # UI components
+│   │   │   ├── ui/                      # UI components
 │   │   │   │   ├── alert-dialog.tsx
 │   │   │   │   ├── badge.tsx
 │   │   │   │   ├── badgeVariants.ts
@@ -64,27 +64,27 @@ mini-event-scheduler/
 │   │   │   ├── EventCard.tsx
 │   │   │   ├── EventForm.tsx
 │   │   │   └── EventList.tsx
-│   │   └── services/         # API services
+│   │   └── services/                                    # API services
 │   └── package.json
-├── server/                   # Backend Node.js application
+├── server/                                                # Backend Node.js application
 │   ├── src/
 │   │   └── app/
-│   │       ├── constraints/  # Application constants
+│   │       ├── constraints/                                # Application constants
 │   │       │   └── eventCategories.ts
-│   │       ├── data/         # In-memory data store
+│   │       ├── data/                                       # In-memory data store
 │   │       │   └── events.data.ts
-│   │       ├── errors/       # Error handling
+│   │       ├── errors/                                     # Error handling
 │   │       │   └── AppError.ts
-│   │       ├── globalTypes/  # Type definitions
+│   │       ├── globalTypes/                                # Type definitions
 │   │       │   ├── error.type.ts
 │   │       │   └── response.type.ts
-│   │       ├── helpers/      # Utility functions
+│   │       ├── helpers/                                    # Utility functions
 │   │       │   ├── catchAsync.ts
 │   │       │   └── sendResponse.ts
-│   │       ├── middlewares/  # Express middlewares
+│   │       ├── middlewares/                                # Express middlewares
 │   │       │   ├── globalErrorhandler.ts
 │   │       │   └── notFound.ts
-│   │       ├── modules/      # Feature modules
+│   │       ├── modules/                                    # Feature modules
 │   │       │   └── events/
 │   │       │       ├── __tests__/
 │   │       │       │   ├── categorize.test.ts
