@@ -81,7 +81,7 @@ const EventForm = ({ onSuccess }: EventFormProps) => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-4 mx-auto p-6 bg-white rounded-lg shadow-lg max-w-lg w-full md:max-w-xl lg:max-w-2xl"
       >
-        <h2 className="text-2xl font-bold text-center mb-4">Create New Event</h2>
+        {/* <h2 className="text-2xl font-bold text-center mb-4">Create New Event</h2> */}
         
         {/* Title Field */}
         <FormField

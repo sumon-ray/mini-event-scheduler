@@ -73,7 +73,7 @@ const EventList = ({ refreshTrigger }: Props) => {
 
   return (
     <div className=" container mx-auto min-h-screen">
-      <h1 className="text-md md:text-3xl font-sans mb-6 text-center">
+      <h1 className="text-2xl font-semibold md:text-3xl font-sans mb-6 text-center">
         Event Management Dashboard
       </h1>
 

@@ -16,20 +16,23 @@ const Navbar = ({ onAddEventClick }: NavbarProps) => {
     <nav
       className="
       backdrop-blur-xl
-  
       shadow-lg
       p-4 sticky top-0 z-50
       border-b border-blue-800/50
     "
     >
       <div className="container mx-auto flex justify-between items-center">
-        <a
-          href="/"
-          className="text-2xl font-sans hover:text-blue-200 transition-colors duration-200"
-        >
-          Event Scheduler
-        </a>
+        <div className="flex items-center gap-1">
+          <img className="w-9" src="./logo.svg" alt="Event Scheduler Logo" />
+          <a
+            href="/"
+            className="text-2xl font-semibold font-sans hover:text-blue-200 transition-colors duration-200"
+          >
+            Event Scheduler
+          </a>
+        </div>
 
+        {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-6">
           <a
             href="#"
@@ -46,11 +49,12 @@ const Navbar = ({ onAddEventClick }: NavbarProps) => {
           </Button>
         </div>
 
+        {/* Mobile Menu Toggle Button (Hamburger/Close Icon) */}
         <div className="md:hidden">
           <button
             onClick={toggleMobileMenu}
-            className="text-white focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-md p-1"
-            aria-label="মোবাইল মেনু টগল করুন"
+            className="text-black focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-md p-1"
+            aria-label={isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
           >
             {isMobileMenuOpen ? (
               <svg
@@ -87,41 +91,21 @@ const Navbar = ({ onAddEventClick }: NavbarProps) => {
         </div>
       </div>
 
-     {/* mobile menu */}
+      {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 bg-blue-950/90 backdrop-blur-2xl flex flex-col items-center justify-center space-y-6 z-40">
-          <button
-            onClick={toggleMobileMenu}
-            className="absolute top-4 right-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-md p-1"
-            aria-label="মোবাইল মেনু বন্ধ করুন"
-          >
-            <svg
-              className="w-8 h-8"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12"
-              ></path>
-            </svg>
-          </button>
+        <div className="md:hidden  absolute top-full left-0 w-full bg-[#ba1952]  flex flex-col items-center py-6 space-y-6 z-40">
           <a
             href="#"
-            className="text-3xl font-semibold text-white hover:text-blue-200 transition-colors duration-200"
+            className="text-xl rounded-md w-4/5 max-w-xs py-1 text-center bg-white border-white  hover:text-blue-200 transition-colors duration-200"
             onClick={toggleMobileMenu}
           >
             Events
           </a>
           <Button
             variant="outline"
-            className="w-4/5 max-w-xs text-white border-white hover:bg-white/10 hover:text-white text-lg py-3"
+            className="w-4/5 max-w-xs border-white hover:bg-white/10 hover:text-black text-lg py-3"
             onClick={() => {
-              onAddEventClick(); 
+              onAddEventClick();
               toggleMobileMenu();
             }}
           >

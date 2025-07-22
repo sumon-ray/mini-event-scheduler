@@ -33,8 +33,8 @@ const App = () => {
 
       <Dialog open={isEventFormModalOpen} onOpenChange={setIsEventFormModalOpen}>
         <DialogContent className="sm:max-w-[425px] md:max-w-xl lg:max-w-2xl">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-gray-800">   Add New Event</DialogTitle>
+          <DialogHeader className="text-center mx-auto">
+            <DialogTitle className="text-2xl md:text-4xl font-bold text-gray-800 text-center">   Add New Event</DialogTitle>
             <DialogDescription>
             Please fill in the following details to schedule a new event
             </DialogDescription>
