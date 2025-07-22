@@ -1,10 +1,3 @@
-import { AxiosError } from "axios";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import api from "../utils/api"; 
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -15,46 +8,29 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea"; 
+import { Textarea } from "@/components/ui/textarea";
+import { eventFormDefaultValues } from "@/constants/formDefaults";
+import { eventFormSchema, type EventFormValues } from "@/schemas/event.schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { AxiosError } from "axios";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import api from "../utils/api";
 
 interface EventFormProps {
   onSuccess: () => void;
 }
 
-// 1. Define your form schema with Zod
-const eventFormSchema = z.object({
-  title: z.string().min(1, {
-    message: "Title is required.",
-  }),
-  date: z.string().min(1, {
-    message: "Date is required.",
-  }),
-  time: z.string().min(1, {
-    message: "Time is required.",
-  }),
-  notes: z.string().optional(),
-});
-
-type EventFormValues = z.infer<typeof eventFormSchema>;
-
 const EventForm = ({ onSuccess }: EventFormProps) => {
   const form = useForm<EventFormValues>({
     resolver: zodResolver(eventFormSchema),
-    defaultValues: {
-      title: "",
-      date: "",
-      time: "",
-      notes: "",
-    },
+    defaultValues: eventFormDefaultValues,
   });
 
-  // onSubmit handler
   const onSubmit = async (values: EventFormValues) => {
     try {
       await api.post("/events", values);
       form.reset();
-      
       onSuccess();
       toast.success("Event has been created.");
     } catch (error: unknown) {
@@ -66,7 +42,6 @@ const EventForm = ({ onSuccess }: EventFormProps) => {
             "Server is currently unavailable. Please try again later."
           );
         } else {
-          // You might want to display specific error messages from error.response.data if available
           toast.error("Something went wrong. Please try again.");
         }
       } else {
@@ -81,9 +56,6 @@ const EventForm = ({ onSuccess }: EventFormProps) => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-4 mx-auto p-6 bg-white rounded-lg shadow-lg max-w-lg w-full md:max-w-xl lg:max-w-2xl"
       >
-        {/* <h2 className="text-2xl font-bold text-center mb-4">Create New Event</h2> */}
-        
-        {/* Title Field */}
         <FormField
           control={form.control}
           name="title"
@@ -98,9 +70,7 @@ const EventForm = ({ onSuccess }: EventFormProps) => {
           )}
         />
 
-        {/* Date and Time Fields in a responsive grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Date Field */}
           <FormField
             control={form.control}
             name="date"
@@ -115,7 +85,6 @@ const EventForm = ({ onSuccess }: EventFormProps) => {
             )}
           />
 
-          {/* Time Field */}
           <FormField
             control={form.control}
             name="time"
@@ -131,7 +100,6 @@ const EventForm = ({ onSuccess }: EventFormProps) => {
           />
         </div>
 
-        {/* Notes Field */}
         <FormField
           control={form.control}
           name="notes"

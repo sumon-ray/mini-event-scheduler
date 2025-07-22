@@ -56,20 +56,20 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="mailto:your_email@example.com"
+                  href="mailto:sumonray146371@gmail.com"
                   className="flex items-center justify-center md:justify-start space-x-2 hover:text-blue-300 transition-colors duration-200"
                 >
                   <Mail size={18} />
-                  <span>your_email@example.com</span>
+                  <span>sumonray146371@gmail.com</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+8801XXXXXXXXX"
+                  href="tel:+8801763604565"
                   className="flex items-center justify-center md:justify-start space-x-2 hover:text-blue-300 transition-colors duration-200"
                 >
                   <Phone size={18} />
-                  <span>+8801XXXXXXXXX</span>
+                  <span>+8801763604565</span>
                 </a>
               </li>
             </ul>
@@ -79,7 +79,7 @@ const Footer = () => {
             <h3 className="text-xl font-semibold mb-4 text-blue-300">Find Us</h3>
             <div className="flex justify-center md:justify-start items-center space-x-4">
               <a
-                href="https://github.com/your-github-username"
+                href="https://github.com/sumon-ray"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-blue-300 transition-colors duration-200"
@@ -88,7 +88,7 @@ const Footer = () => {
                 <Github size={24} />
               </a>
               <a
-                href="https://linkedin.com/in/your-linkedin-username"
+                href="https://www.linkedin.com/in/sumon60/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-blue-300 transition-colors duration-200"
@@ -98,7 +98,7 @@ const Footer = () => {
               </a>
               {/* Uncomment if you have a portfolio website */}
               <a
-                href="https://your-portfolio.com"
+                href="https://sumon-ray.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-blue-300 transition-colors duration-200"

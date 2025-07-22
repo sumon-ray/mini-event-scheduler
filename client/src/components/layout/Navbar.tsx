@@ -26,7 +26,7 @@ const Navbar = ({ onAddEventClick }: NavbarProps) => {
           <img className="w-9" src="./logo.svg" alt="Event Scheduler Logo" />
           <a
             href="/"
-            className="text-2xl font-semibold font-sans hover:text-blue-200 transition-colors duration-200"
+            className="text-2xl font-semibold font-sans hover:text-[#e63946] transition-colors duration-200"
           >
             Event Scheduler
           </a>
@@ -96,7 +96,7 @@ const Navbar = ({ onAddEventClick }: NavbarProps) => {
         <div className="md:hidden  absolute top-full left-0 w-full bg-[#ba1952]  flex flex-col items-center py-6 space-y-6 z-40">
           <a
             href="#"
-            className="text-xl rounded-md w-4/5 max-w-xs py-1 text-center bg-white border-white  hover:text-blue-200 transition-colors duration-200"
+            className="text-lg rounded-md w-4/5 max-w-xs py-1 text-center bg-white border-white  hover:text-blue-200 transition-colors duration-200"
             onClick={toggleMobileMenu}
           >
             Events
