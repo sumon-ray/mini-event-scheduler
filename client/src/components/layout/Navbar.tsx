@@ -1,121 +1,113 @@
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
+"use client"
+
+import { Button } from "@/components/ui/button"
+import { useState } from "react"
+import { Calendar, Menu, X, Plus } from "lucide-react"
 
 interface NavbarProps {
-  onAddEventClick: () => void;
+  onAddEventClick: () => void
 }
 
 const Navbar = ({ onAddEventClick }: NavbarProps) => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
 
   return (
-    <nav
-      className="
-      backdrop-blur-xl
-      shadow-lg
-      p-4 sticky top-0 z-50
-      border-b border-blue-800/50
-    "
-    >
-      <div className="container mx-auto flex justify-between items-center">
-        <div className="flex items-center gap-1">
-          <img className="w-9" src="./logo.svg" alt="Event Scheduler Logo" />
-          <a
-            href="/"
-            className="text-2xl font-semibold font-sans hover:text-[#e63946] transition-colors duration-200"
-          >
-            Event Scheduler
-          </a>
+    <nav className=" bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-200/50 sticky top-0 z-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo and Brand */}
+          <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl shadow-lg">
+              <Calendar className="w-5 h-5 text-white" />
+            </div>
+            <div className="flex flex-col">
+              <h1 className="text-xl font-bold text-gray-900 leading-tight">Event Scheduler</h1>
+              <span className="text-xs text-gray-500 font-medium">Organize your time</span>
+            </div>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            <nav className="flex items-center space-x-6">
+              <a
+                href="#"
+                className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group"
+              >
+                My Events
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+              </a>
+              <a
+                href="#"
+                className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group"
+              >
+                Calendar
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+              </a>
+            </nav>
+
+            <Button
+              onClick={onAddEventClick}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium px-6 py-2 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 flex items-center gap-2"
+            >
+              <Plus className="w-4 h-4" />
+              New Event
+            </Button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={toggleMobileMenu}
+              className="p-2 text-gray-700 hover:text-blue-600 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </Button>
+          </div>
         </div>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-6">
-          <a
-            href="#"
-            className="text-black hover:text-[#e63946] px-2 py-1 rounded-md transition-colors duration-200"
-          >
-            Events
-          </a>
-          <Button
-            variant="ghost"
-            className="text-white bg-[#e63946] hover:bg-transparent hover:border border-[#e63946] transition-all  hover:text-black"
-            onClick={onAddEventClick}
-          >
-            Add New Event
-          </Button>
-        </div>
-
-        {/* Mobile Menu Toggle Button (Hamburger/Close Icon) */}
-        <div className="md:hidden">
-          <button
-            onClick={toggleMobileMenu}
-            className="text-black focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-md p-1"
-            aria-label={isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
-          >
-            {isMobileMenuOpen ? (
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden border-t border-gray-200/50 bg-white/95 backdrop-blur-md">
+            <div className="px-2 pt-4 pb-6 space-y-3">
+              <a
+                href="#"
+                className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg font-medium transition-colors duration-200"
+                onClick={toggleMobileMenu}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                ></path>
-              </svg>
-            ) : (
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+                My Events
+              </a>
+              <a
+                href="#"
+                className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg font-medium transition-colors duration-200"
+                onClick={toggleMobileMenu}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                ></path>
-              </svg>
-            )}
-          </button>
-        </div>
+                Calendar
+              </a>
+              <div className="pt-2">
+                <Button
+                  onClick={() => {
+                    onAddEventClick()
+                    toggleMobileMenu()
+                  }}
+                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2"
+                >
+                  <Plus className="w-4 h-4" />
+                  New Event
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-
-      {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden  absolute top-full left-0 w-full bg-[#ba1952]  flex flex-col items-center py-6 space-y-6 z-40">
-          <a
-            href="#"
-            className="text-lg rounded-md w-4/5 max-w-xs py-1 text-center bg-white border-white  hover:text-blue-200 transition-colors duration-200"
-            onClick={toggleMobileMenu}
-          >
-            Events
-          </a>
-          <Button
-            variant="outline"
-            className="w-4/5 max-w-xs border-white hover:bg-white/10 hover:text-black text-lg py-3"
-            onClick={() => {
-              onAddEventClick();
-              toggleMobileMenu();
-            }}
-          >
-            Add New Event
-          </Button>
-        </div>
-      )}
     </nav>
-    
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
