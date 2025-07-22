@@ -22,6 +22,5 @@ app.use("/api/events", EventRouter);
 
 app.use(notFound)
 app.use(globalErrorHandler)
-// Event routes
 
 export default app;

@@ -48,6 +48,8 @@ const createEvent = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+
+
 // Archive an event
 const archiveEvent = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
