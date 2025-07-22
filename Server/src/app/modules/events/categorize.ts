@@ -5,10 +5,9 @@ import {
 
 // category according to interface
 export type Category = "Work" | "Personal" | "Other";
-
 /**
- * AI-like categorization ফাংশন।
- * title এবং optional notes মিলে category নির্ধারণ করে।
+ * AI-like categorization function
+ * title And optional notes makes category
  */
 export function categorizeEvent(title: string, notes?: string): Category {
   const text = (title + " " + (notes ?? "")).toLowerCase();

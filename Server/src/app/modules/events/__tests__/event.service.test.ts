@@ -14,7 +14,6 @@ describe('EventService', () => {
       date: '2025-08-10',
       time: '10:00',
       notes: 'Test notes',
-      // category: 'Work',
     });
 
     expect(newEvent).toHaveProperty('id');
@@ -29,14 +28,12 @@ describe('EventService', () => {
       date: '2025-08-11',
       time: '11:00',
       notes: '',
-      // category: 'Work',
     });
     await EventService.createEvent({
       title: 'Event 2',
       date: '2025-08-10',
       time: '09:00',
       notes: '',
-      // category: 'Personal',
     });
 
     const allEvents = await EventService.getAllEvents();
@@ -54,7 +51,6 @@ describe('EventService', () => {
       date: '2025-08-12',
       time: '12:00',
       notes: '',
-      // category: 'Other',
     });
 
     const archivedEvent = await EventService.archiveEvent(event.id);
@@ -67,7 +63,6 @@ describe('EventService', () => {
       date: '2025-08-13',
       time: '13:00',
       notes: '',
-      // category: 'Other',
     });
 
     await EventService.deleteEvent(event.id);
@@ -97,6 +92,6 @@ describe('EventService', () => {
   test('should throw error when updating a non-existing event', async () => {
     await expect(
       EventService.updateEvent('invalid-id', { title: 'Fail Update' })
-    ).rejects.toThrow(AppError); // or toThrow('Event not found')
+    ).rejects.toThrow(AppError); 
   });
 });
