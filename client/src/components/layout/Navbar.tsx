@@ -114,6 +114,7 @@ const Navbar = ({ onAddEventClick }: NavbarProps) => {
         </div>
       )}
     </nav>
+    
   );
 };
 
